@@ -3,7 +3,7 @@
   pre_tasks:
     # Shared logic included here with pre-tasks
     - name: include global_vars.yml
-      include_vars: ./vars/global.yml
+      include_vars: ./vars/global_vars.yml
 
     - name: include morpheus/global vars file
       include_vars: ./vars/morpheus_vars.yml
@@ -12,7 +12,6 @@
         msg:
           - "Logging Variables from vars in project"
           - "Ansible Distro Verison - {{ ansible_distribution_version }}"
-          - "Custom Hostname - {{ custom_hostname }}"
           - "m_cloud_code: {{ m_cloud_code }}"
           - "m_cloud_region: {{ m_cloud_region }}"
           - "m_cloud_name: {{ m_cloud_name }}"
@@ -20,8 +19,8 @@
           - "m_instance_type_code: {{ m_instance_type_code }}"
           - "m_instance_type_name: {{ m_instance_type_name }}"
           - "m_created_by: {{ m_created_by }}"
-          - "m_group_code: {{ m_group_code }}"
+          - "m_group: {{ m_group }}"
           - "m_description: {{ m_description }}"
           - "isRHEL7: {{ isRHEL7 }}"
-          - "isCENTOS7_Lab: {{ isCENTOS7_Lab }}"
-          - "isUBUNTU_Lab: {{ isUBUNTU_Lab }}"
+          - "isCENTOS7: {{ isCENTOS7 }}"
+          - "isUBUNTU2004: {{ isUBUNTU2004 }}"
