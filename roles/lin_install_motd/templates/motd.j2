@@ -1,0 +1,23 @@
+WELCOME you have no resonable privacy on this System
+Machine Name: 
+  {{ ansible_fqdn }}
+Machine OS and Version: 
+  {{ ansible_distribution }} {{ ansible_distribution_version }}
+Memory: 
+  Memory_MB: {{ ansible_memtotal_mb }}
+CPU:
+  Count: {{ ansible_processor_count }}
+  Cores: {{ ansible_processor_cores }}
+Network:
+  {{ ansible_default_ipv4.address }}
+  {{ ansible_default_ipv4.netmask }}
+{% if morpheus %}
+Morpheus:
+  Description: {{ m_description }}
+  {{ m_created_by }}
+  {{ m_instance_type_name }}
+  {{ m_cloud_code }}
+  {{ m_cloud_region }}
+  {{ m_cloud_name }}
+
+{% endif %}

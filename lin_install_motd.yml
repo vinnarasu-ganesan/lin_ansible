@@ -1,0 +1,6 @@
+---
+- name: Install MOTD
+  hosts: all
+  become: True
+  roles:
+    - lin_install_motd

@@ -24,3 +24,7 @@
           - "isRHEL7: {{ isRHEL7 }}"
           - "isCENTOS7: {{ isCENTOS7 }}"
           - "isUBUNTU2004: {{ isUBUNTU2004 }}"
+  tasks:
+    - name: Include MOTD setup
+      include_role:
+        name: lin_install_motd
