@@ -1,0 +1,6 @@
+---
+- name: Include CentOS install
+  include: CentOS.yml
+  when: > 
+    isCENTOS8
+    or isCENTOS7

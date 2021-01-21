@@ -1,0 +1,16 @@
+- name: Add the Docker-CE reposoitory
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+
+- name: Install docker on Ubuntu
+  package:
+    name:
+      docker
+    state: latest
+
+- name: Start and enable Docker service
+  service:
+    name: docker
+    state: started
+    enabled: True
+  ## Not finished

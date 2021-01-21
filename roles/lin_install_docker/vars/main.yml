@@ -1,0 +1,5 @@
+# file for roles variables
+centos_docker: 
+  - docker-ce 
+  - docker-ce-cli
+  - containerd.io
