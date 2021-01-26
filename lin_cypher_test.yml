@@ -16,4 +16,5 @@
       msg: "This is a morpheus variable: {{ morpheus['instance']['hostname'] }}"
 
   - name: Print out the morpheus variable from the ./vars/morpheus_vars.yml file
-    debug: "Thist is a morpheus variable from the morepheus.yml vars in the project: {{ m_instance.hostname }}"
+    debug: 
+      msg: "This is a morpheus variable from the morepheus.yml vars in the project: {{ m_instance.hostname }}"
