@@ -1,0 +1,10 @@
+---
+- name: Cypher Test
+  hosts: all
+  become: True
+  pre_tasks:      
+    - name: include morpheus_vars.yml
+      include_vars: ./vars/morpheus_vars.yml
+  tasks:
+  debug: 
+    msg: "This is a secret from Cypher: {{ lookup('cypher','secret=password/test') }}"
