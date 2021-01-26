@@ -21,4 +21,4 @@
 
   - name: Print out custom 
     debug: 
-      msg: "Check box: {{ m_custom_option.tchkbox }}"
+      msg: "Check box: {{ m_custom_options.tchkbox }}"
