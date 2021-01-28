@@ -22,3 +22,5 @@
   - name: Print out custom 
     debug: 
       msg: "Check box: {{ m_custom_options.tchkbox }}"
+    when: >
+      m_custom_options.tchkbox is defined
