@@ -5,6 +5,7 @@
     group_ou: "{{ lookup('cypher','secret=secret/group_ou') }}"
     computer_ou: "{{ lookup('cypher','secret=secret/computer_ou') }}"
     realm: "{{ lookup('cypher','secret=secret/realm') }}"
+    realm_admin: "{{ lookup('cypher','secret=secret/realm_admin') }}"
     realm_password: "{{ lookup('cypher','secret=secret/realm_password') }}"
     root_admin_group: "{{ lookup('cypher','secret=secret/root_admin_group') }}"
 
