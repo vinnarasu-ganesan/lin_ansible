@@ -11,6 +11,9 @@ m_server: "{% if 'server' in morpheus %}{{ morpheus.server | to_json | safe}}{% 
 m_group: "{{ morpheus.group | default({}) }}"
 m_instance_evars: "{{ m_instance.evars | default({}) }}"
 
+# Check boxes for different applications or functionality
+m_isDocker: {{ m_custom_options.docker_chkbox }}
+
 # The following are morpheus vars included with morpheus
 m_cloud_code: "{{ m_zone.cloudTypeCode | default('') }}"
 m_cloud_region: "{{ m_zone.regionCode | default('') }}"

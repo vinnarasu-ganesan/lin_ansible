@@ -21,6 +21,7 @@
           - "m_created_by: {{ m_created_by }}"
           - "m_group: {{ m_group }}"
           - "m_description: {{ m_description }}"
+          - "m_isDocker: {{ m_isDocker }}"
           - "isRHEL7: {{ isRHEL7 }}"
           - "isCENTOS7: {{ isCENTOS7 }}"
           - "isUBUNTU2004: {{ isUBUNTU2004 }}"
@@ -28,3 +29,26 @@
     - name: Include MOTD setup
       include_role:
         name: lin_install_motd
+
+    - name: Include Enable EPEL
+      include_role:
+        name: lin_enable_epel
+      when: > 
+        isCENTOS7
+        or isCENTOS8
+
+    - name: Include AD join
+      include_role:
+        name: lin_ad_join_computer
+      when: >
+        isCENTOS7
+        or isCENTOS8
+
+    - name: Include Install docker
+      include_role:
+        name: lin_install_docker
+      when: >
+        m_isDocker
+        and (isCENTOS7 or isCENTOS8) 
+
+   
