@@ -3,3 +3,10 @@ docker_ce_packages:
   - docker-ce 
   - docker-ce-cli
   - containerd.io
+
+ubuntu_packages:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
