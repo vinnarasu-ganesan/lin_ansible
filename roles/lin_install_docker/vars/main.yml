@@ -1,8 +1,12 @@
 # file for roles variables
-centos_docker: 
+docker_ce_packages: 
   - docker-ce 
   - docker-ce-cli
   - containerd.io
 
-# TODO Added ubuntu packages
-#ubuntu_docker_ce:
+ubuntu_packages:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
