@@ -7,4 +7,5 @@
     debug: 
       msg: 
       - "This is the morpheus json vars"
-      - "{{ morpheus | to_nice_yaml}}"
+      - "{{ item }}"
+    with_dict: "{{ morpheus }}"
