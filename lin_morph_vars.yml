@@ -7,7 +7,7 @@
     debug: 
       msg: 
       - "This is the morpheus json vars"
-      - "{{ morpheus }}"
+      - "{{ hostvars[inventory_hostname]['morpheus']['server'] | to_nice_json }}"
 
 
   - name: Dump morpheus variable for this instance
