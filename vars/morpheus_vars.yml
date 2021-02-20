@@ -8,11 +8,11 @@ m_custom_options: "{{ morpheus.customOptions | default({}) }}"
 # WARNING: morpheus.instance is passed to Ansible (unexpectedly) as a unicode string, we force it to a dict here.
 m_instance: "{% if 'instance' in morpheus %}{{ morpheus.instance | to_json | safe }}{% else %}{}{% endif %}"
 m_server: "{% if 'server' in morpheus %}{{ morpheus.server | to_json | safe}}{% else %}{}{% endif %}"
-m_group: "{{ morpheus.group | default({}) }}"
+m_group: "{{ morpheus.group.name | default({}) }}"
 m_instance_evars: "{{ m_instance.evars | default({}) }}"
 
 # Check boxes for different applications or functionality
-m_isDocker: "{{ m_custom_options.docker_chkbox }}"
+m_isDocker: "{{ m_custom_options.docker_chkbox | default({}) }}"
 
 # The following are morpheus vars included with morpheus
 m_cloud_code: "{{ m_zone.cloudTypeCode | default('') }}"
