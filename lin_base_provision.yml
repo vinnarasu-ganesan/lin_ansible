@@ -48,7 +48,7 @@
       include_role:
         name: lin_install_docker
       when: >
-        m_isDocker
+        m_isDocker == 'on'
         and (isCENTOS7 or isCENTOS8) 
 
    
