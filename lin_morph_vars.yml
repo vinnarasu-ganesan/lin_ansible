@@ -16,4 +16,4 @@
       
   - name: Results
     debug:
-      var: "{{ hostvars[inventory_hostname]['morpheus']['results'] | to_nice_yaml }}"
+      msg: "{{ hostvars[inventory_hostname]['morpheus']['results'] | to_nice_json }}"
