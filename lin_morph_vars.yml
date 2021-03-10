@@ -10,7 +10,7 @@
 
   - name: Dump morpheus variable for this instance
     debug:
-      var: "{{ hostvars[inventory_hostname]['morpheus'] | to_nice_yaml }}"
+      var: "{{ hostvars[inventory_hostname]['morpheus'] | to_nice_json }}"
       
   - name: Results
     debug:
