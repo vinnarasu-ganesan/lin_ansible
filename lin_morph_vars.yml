@@ -5,13 +5,12 @@
   tasks:
   - name: Print out all morpheus vars
     debug: 
-      var: "{{ hostvars[inventory_hostname]['morpheus']['server'] | to_nice_json }}"
+      msg: "{{ hostvars[inventory_hostname]['morpheus'] | to_nice_yaml }}"
 
-
-  - name: Dump morpheus variable for this instance
+  - name: Print out morpheus server vars
     debug:
-      var: "{{ hostvars[inventory_hostname]['morpheus'] | to_nice_json }}"
+      msg: "{{ hostvars[inventory_hostname]['morpheus']['server'] | to_nice_yaml}}"
       
-  - name: Results
+  - name: Print out morpheus restuls
     debug:
-      var: "{{ hostvars[inventory_hostname]['morpheus']['results'] }}"
+      var: "{{ hostvars[inventory_hostname]['morpheus']['results'] | to_nice_yaml }}"
