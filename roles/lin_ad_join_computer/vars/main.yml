@@ -28,7 +28,7 @@
         - sssd-tools
         - adcli
         - packagekit
-        - python-pip
+        - python3-pip
 
     ad_packages_oel:
         - realmd
