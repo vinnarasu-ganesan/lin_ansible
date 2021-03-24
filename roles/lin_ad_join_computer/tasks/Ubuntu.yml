@@ -1,34 +1,25 @@
 #todo
+   
+- name: Install required packages for Ubuntu
+  apt: 
+    name: "{{ ad_packages_ubuntu }}"
+    state: present
+  when: ansible_distribution == "Ubuntu"
 
-# - name: Include Lab Vars 
-#   include_vars:
-#     file: lab.yml
-    
-# - name: Install required packages for Ubuntu
-#   apt: 
-#     name: "{{ ad_packages_ubuntu }}"
-#     state: present
-#   when: ansible_distribution == "Ubuntu"
+- name: PIP install pexpect
+  pip:
+    name: pexpect
+    state: latest
 
-# - name: PIP install pexpect
-#   pip:
-#     name: pexpect
-#     state: latest
+- name: Install realmd configuration file
+  template:
+    src: realmd.conf.j2
+    dest: /etc/realmd.conf
 
-# - name: Install realmd configuration file
-#   template:
-#     src: realmd.conf.j2
-#     dest: /etc/realmd.conf
-
-# - name: Join the Realm
-#   shell: echo "{{ realm_password }}"| realm join "{{ realm }}"
-#   ignore_errors: true
-#   register: realm_results
-
-# - name: Create
-#   shell: echo -n "{{ realm_password }}"|adcli create-group --domain="{{ realm }}" --stdin-password "{{ ansible_hostname }}" --domain-ou='OU=Linux,OU=System Groups,OU=Security Groups,OU=LBrands,DC=cloud,DC=lab,DC=local'
-#   ignore_errors: true
-#   register: group_results
+- name: Join the Realm
+  shell: echo "{{ realm_password }}"| realm join "{{ realm }}"
+  ignore_errors: true
+  register: realm_results
 
 # - name: Print Realm Results
 #   debug:
@@ -43,30 +34,30 @@
 #   when: >
 #     group_results
 
-# - name: Permit computer group
-#   expect:
-#     command: realm permit -g "{{ ansible_hostname }}"
-#     responses:
-#       Password for Administrator: "{{ realm_password }}"
+- name: Permit computer group
+  expect:
+    command: realm permit -g "{{ ansible_hostname }}"
+    responses:
+      Password for Administrator: "{{ realm_password }}"
 
-# - name: Permit root admins
-#   expect:
-#     command: realm permit -g "{{ root_admin_group }}"
-#     responses:
-#       Password for Administrator: "{{ realm_password }}"
+- name: Permit root admins
+  expect:
+    command: realm permit -g "{{ root_admin_group }}"
+    responses:
+      Password for Administrator: "{{ realm_password }}"
 
-# - name: Add sssd conf lines
-#   lineinfile:
-#     path: /etc/sssd/sssd.conf
-#     line: "{{ item }}"
-#     state: present
-#     insertafter: '[{{ realm }}]'
-#   with_items:
-#     - 'ad_enable_gc = false'
+- name: Add sssd conf lines
+  lineinfile:
+    path: /etc/sssd/sssd.conf
+    line: "{{ item }}"
+    state: present
+    insertafter: '[{{ realm }}]'
+  with_items:
+    - 'ad_enable_gc = false'
 
-# - name: Replace Use fully qualified names
-#   replace:
-#     path: /etc/sssd/sssd.conf
-#     regexp: '^use_fully_qualified_names = True'
-#     replace: 'use_fully_qualified_names = false'
-#   notify: restart_sssd
+- name: Replace Use fully qualified names
+  replace:
+    path: /etc/sssd/sssd.conf
+    regexp: '^use_fully_qualified_names = True'
+    replace: 'use_fully_qualified_names = false'
+  notify: restart_sssd
