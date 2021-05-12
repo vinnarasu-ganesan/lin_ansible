@@ -9,7 +9,7 @@
 
   - name: Print out cypher
     debug: 
-      msg: "This is a secret from Cypher: {{ lookup('cypher','secret=secret/test') }}"
+      msg: "This is a secret from Cypher: {{ lookup('cypher','secret=secret/name') }}"
 
   - name: Print out morpheus varable
     debug:
