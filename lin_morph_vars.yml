@@ -9,7 +9,7 @@
 
   - name: Print out all morpheus vars
     debug: 
-      msg: "{{ hostvars[inventory_hostname]['morpheus']['hostname'] }}"
+      msg: "Hostname: {{['morpheus']['instance']['hostname'] }}"
 
   # - name: Print out morpheus server vars
   #   debug:
