@@ -15,6 +15,6 @@
     debug:
       msg: "{{ hostvars[inventory_hostname]['morpheus']['results'] }}"
       
-  - name: Print out morpheus result echo
-    debug:
-      msg: "{{ hostvars[inventory_hostname]['morpheus']['results']['echo'] }}"
+  # - name: Print out morpheus result echo
+  #   debug:
+  #     msg: "{{ hostvars[inventory_hostname]['morpheus']['results']['echo'] }}"
