@@ -13,7 +13,7 @@
 
   - name: Print user out 
     debug:
-      msg: "User: {{ morpheus['user']['account'] }}"
+      msg: "User: {{ morpheus['user'] }}"
 
   # - name: Print out morpheus server vars
   #   debug:
