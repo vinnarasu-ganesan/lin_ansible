@@ -3,9 +3,9 @@
   become: true
   gather_facts: no
   tasks:
-  # - name: Print out all morpheus vars
-  #   debug: 
-  #     msg: "{{ hostvars[inventory_hostname]['morpheus'] | to_nice_yaml }}"
+  - name: Print out all morpheus vars
+    debug: 
+      msg: "{{ hostvars[inventory_hostname]['morpheus'] | to_nice_yaml }}"
 
   - name: Print out all morpheus vars
     debug: 
