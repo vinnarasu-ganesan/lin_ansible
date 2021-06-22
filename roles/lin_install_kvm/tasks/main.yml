@@ -1,0 +1,6 @@
+---
+- name: Run gate before role 
+  include: gate.yml
+  
+- name: Install KVM
+  include: "{{ ansible_distribution | lower }}.yml"
