@@ -11,6 +11,7 @@
     - debug:
         msg:
           - "Logging Variables from vars in project"
+          - "IP ADDRESS - {{ m_ip_addr | default({}) }}"
           - "Ansible Distro Verison - {{ ansible_distribution_version }}"
           - "m_cloud_code: {{ m_cloud_code }}"
           - "m_cloud_region: {{ m_cloud_region }}"
@@ -25,6 +26,9 @@
           - "isRHEL7: {{ isRHEL7 }}"
           - "isCENTOS7: {{ isCENTOS7 }}"
           - "isUBUNTU2004: {{ isUBUNTU2004 }}"
+          - " ------------------------------------ "
+          - " Print EVARS: "
+          - "{{ m_instance_evars }}"
   tasks:
     - name: Include MOTD setup
       include_role:
