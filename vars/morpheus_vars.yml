@@ -15,6 +15,7 @@ m_instance_evars: "{{ m_instance.evars | default({}) }}"
 m_isDocker: "{{ m_custom_options.docker_chkbox | default({}) }}"
 
 # The following are morpheus vars included with morpheus
+m_ip_addr: "{{ m_server.internalIP }}"
 m_cloud_code: "{{ m_zone.cloudTypeCode | default('') }}"
 m_cloud_region: "{{ m_zone.regionCode | default('') }}"
 m_cloud_name: "{{ m_zone.cloudTypeName | default('') }}"
