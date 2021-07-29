@@ -9,7 +9,7 @@
 
   - name: Print out all morpheus vars
     debug: 
-      msg: "Hostname: {{ morpheus | to_nice_yaml }}"
+      msg: "Hostname: {{ morpheus | to_json(ensure_ascii=False) }}"
 
   # - name: Print out all morpheus vars
   #   debug: 
