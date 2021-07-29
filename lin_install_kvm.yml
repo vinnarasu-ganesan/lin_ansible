@@ -1,5 +1,5 @@
 ---
-- name: Install Docker
+- name: Install and configure KVM 
   hosts: all
   become: True
   pre_tasks:

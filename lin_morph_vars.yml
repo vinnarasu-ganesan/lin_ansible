@@ -11,9 +11,9 @@
     debug: 
       msg: "Hostname: {{ morpheus['instance']['hostname'] }}"
 
-  - name: Print user out 
-    debug:
-      msg: "User: {{ morpheus['user'] }}"
+  # - name: Print user out 
+  #   debug:
+  #     msg: "User: {{ morpheus['user'] }}"
 
   # - name: Print out morpheus server vars
   #   debug:

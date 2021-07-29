@@ -4,3 +4,6 @@
   
 - name: Install KVM
   include: "{{ ansible_distribution | lower }}.yml"
+
+- name: Define network bridge
+  include: network.yml

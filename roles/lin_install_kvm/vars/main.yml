@@ -5,6 +5,8 @@ rhel_based:
   - libvirt-python
   - libguestfs-tools
   - virt-install
+  - python-lxml.x86_64
+  - bridge-utils
 
 ubuntu_based_2004:
   - qemu-kvm 
