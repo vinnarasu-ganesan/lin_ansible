@@ -1,4 +1,10 @@
-WELCOME you have no resonable privacy on this System
+    __ _____  __ __  __         __  
+   / //_|__ \/ // / / /  ____ _/ /_ 
+  / ,<  __/ / // /_/ /  / __ `/ __ \
+ / /| |/ __/__  __/ /__/ /_/ / /_/ /
+/_/ |_/____/ /_/ /_____\__,_/_.___/ 
+                                                                                                              
+| IF YOU BREAK IT FIX IT |
 Machine Name: 
   {{ ansible_hostname }}
 Machine OS and Version: 
@@ -13,11 +19,8 @@ Network:
   {{ ansible_default_ipv4.netmask }}
 {% if morpheus %}
 Morpheus:
-  Description: {{ m_description }}
-  {{ m_created_by }}
-  {{ m_instance_type_name }}
-  {{ m_cloud_code }}
-  {{ m_cloud_region }}
-  {{ m_cloud_name }}
-
+  Description:   {{ m_description }}
+  Created BY:    {{ m_created_by }}
+  Instance Type: {{ m_instance_type_name }}
+  Cloud:         {{ m_cloud_name }}
 {% endif %}
