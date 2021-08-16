@@ -7,3 +7,16 @@
 {% elif m_instance_context == 'i' %}
   {% set ENV = 'Infrastructure' %}
 {% endif %}
+
+{"Building":"{{ k24_building }}",
+ "Room":"{{ k24_room }}",
+ "Environment": "{{ ENV | default('Undefined') }}",
+ "Purpose":"{{ k24_application }}-{{ k24_tier }}",
+ "ContactEmailGroup":"{{ k24_contact_email_group }}",
+ "BackupDay":"",
+ "BackupTime":"",
+ "Description":"{{ k24_description }}",
+ "CreatedBy":"{{ k24_created_by }}",
+ "Notes":"LBrands Notes",
+ "Notes":""
+}
