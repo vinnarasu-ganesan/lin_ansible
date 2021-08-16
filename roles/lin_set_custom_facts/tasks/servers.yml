@@ -76,5 +76,5 @@
         owner: root
         group: root
       when: >
-        rhsm_factss.stat.exists 
+        rhsm_facts.stat.exists 
         and ansible_facts_dir.stat.isdir
