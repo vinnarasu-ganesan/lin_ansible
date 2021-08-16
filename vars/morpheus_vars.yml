@@ -25,6 +25,7 @@ m_created_by: "{{ m_instance.createdByEmail | default('') }}"
 # Company Information
 # The following are custom options provided on the command line or through Morpheus
 k24_application: "{{ m_custom_options.k24_application | default('') }}"
+k24_building: "{{ m_custom_options.k24_building | default('') }}"
 k24_contact_email_group: "{{ m_custom_options.k24_contact_email_group | default('') }}"
 k24_tier: "{{ m_custom_options.k24_tier | default('') }}"
 k24_isDocker: "{{ m_custom_options.k24_docker_chkbox | default({}) }}"
