@@ -1,11 +1,11 @@
 - name: GATE | Stat to see if RedHat facts file is on the system
   ansible.builtin.stat:
     path: /etc/rhsm/facts/k24.facts
-  register: rhsm_dir
+  register: rhsm_facts
 
 - name: GATE | DEBUG
   ansible.builtin.debug:
-    msg: "{{ rhsm_dir }}"
+    msg: "{{ rhsm_facts }}"
 
 - name: GATE | Check to see if Subscription manager is on the server
   shell: 'which subscription-manager'
