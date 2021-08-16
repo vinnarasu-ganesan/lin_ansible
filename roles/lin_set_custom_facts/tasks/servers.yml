@@ -19,30 +19,30 @@
       command: mv /etc/rhsm/facts/k24.facts /etc/rhsm/facts/k24.facts.{{ timestamp }}
       when: facts.stat.exists
     
-    # - name: SERVERS | Put k24.facts on the server for custom facts in satellite6
-    #   template:
-    #     src: k24.facts.j2
-    #     dest: /etc/rhsm/facts/k24.facts
-    #     owner: root
-    #     group: root
-    #     mode: 0644
+    - name: SERVERS | Put k24.facts on the server for custom facts in satellite6
+      template:
+        src: k24.facts.j2
+        dest: /etc/rhsm/facts/k24.facts
+        owner: root
+        group: root
+        mode: 0644
     
-    # - name: SERVERS | Put k24.facts notes on the server.
-    #   lineinfile:
-    #     path: /etc/rhsm/facts/k24.facts
-    #     line: '"LBrands.Notes.{{ timestamp }}":"{{ notes }}",'
-    #     state: present
-    #     insertafter: '"LBrands.Notes":"LBrands Notes",'
+    - name: SERVERS | Put k24.facts notes on the server.
+      lineinfile:
+        path: /etc/rhsm/facts/k24.facts
+        line: '"LBrands.Notes.{{ timestamp }}":"{{ notes }}",'
+        state: present
+        insertafter: '"LBrands.Notes":"LBrands Notes",'
     
-    # - name: SERVERS | Put old facts back on machine
-    #   lineinfile:
-    #     path: /etc/rhsm/facts/k24.facts
-    #     line: "{{ item }}"
-    #     state: present
-    #     insertafter: '"LBrands.Notes":"LBrands Notes",'
-    #   with_items: "{{ old_notes.stdout_lines|list }}"
-    #   when: >
-    #     facts.stat.exists
+    - name: SERVERS | Put old facts back on machine
+      lineinfile:
+        path: /etc/rhsm/facts/k24.facts
+        line: "{{ item }}"
+        state: present
+        insertafter: '"LBrands.Notes":"LBrands Notes",'
+      with_items: "{{ old_notes.stdout_lines|list }}"
+      when: >
+        facts.stat.exists
     
     - name: SERVERS | Check for the ansible facts.d directory
       stat:
