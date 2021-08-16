@@ -7,12 +7,12 @@
     - name: SERVERS | Check for old notes on server.
       shell: egrep -i 'LBrands.Notes.[0-9]|LBrands.Notes' /etc/rhsm/facts/k24.facts
       changed_when: False
-      when: rhsm_dir.stat.exists
+      when: rhsm_fact.stat.exists
       register: old_notes
     
     - name: SERVERS | Backup old k24.facts
       command: mv /etc/rhsm/facts/k24.facts /etc/rhsm/facts/k24.facts.{{ timestamp }}
-      when: rhsm_dir.stat.exists
+      when: rhsm_fact.stat.exists
     
     - name: SERVERS | Put k24.facts on the server for custom facts in satellite6
       template:
@@ -22,7 +22,7 @@
         group: root
         mode: 0644
       when: > 
-        rhsm_dir.stat.exists
+        rhsm_fact.stat.exists
     
     - name: SERVERS | Put k24.facts notes on the server.
       lineinfile:
@@ -31,7 +31,7 @@
         state: present
         insertafter: '"LBrands.Notes":"LBrands Notes",'
       when: > 
-        rhsm_dir.stat.exists
+        rhsm_fact.stat.exists
     
     - name: SERVERS | Put old facts back on machine
       lineinfile:
@@ -41,7 +41,7 @@
         insertafter: '"LBrands.Notes":"LBrands Notes",'
       with_items: "{{ old_notes.stdout_lines|list }}"
       when: >
-        rhsm_dir.stat.exists
+        rhsm_fact.stat.exists
     
     - name: SERVERS | Check for the ansible facts.d directory
       stat:
