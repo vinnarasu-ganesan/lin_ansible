@@ -1,0 +1,80 @@
+---
+    - name: SERVERS | Stat to see if RedHat facts file is on the system
+      stat:
+        path=/etc/rhsm/facts/k24.facts
+      register: facts
+    
+    - name: SERVERS | Get timestamp
+      command: "date +%Y%m%d@%H:%M:%S"
+      changed_when: False
+      register: time
+    
+    - name: SERVERS | Check for old notes on server.
+      shell: egrep -i 'LBrands.Notes.[0-9]|LBrands.Notes' /etc/rhsm/facts/k24.facts
+      changed_when: False
+      when: facts.stat.exists
+      register: old_notes
+    
+    - name: SERVERS | Backup old k24.facts
+      command: mv /etc/rhsm/facts/k24.facts /etc/rhsm/facts/k24.facts.{{ timestamp }}
+      when: facts.stat.exists
+    
+    # - name: SERVERS | Put k24.facts on the server for custom facts in satellite6
+    #   template:
+    #     src: k24.facts.j2
+    #     dest: /etc/rhsm/facts/k24.facts
+    #     owner: root
+    #     group: root
+    #     mode: 0644
+    
+    # - name: SERVERS | Put k24.facts notes on the server.
+    #   lineinfile:
+    #     path: /etc/rhsm/facts/k24.facts
+    #     line: '"LBrands.Notes.{{ timestamp }}":"{{ notes }}",'
+    #     state: present
+    #     insertafter: '"LBrands.Notes":"LBrands Notes",'
+    
+    # - name: SERVERS | Put old facts back on machine
+    #   lineinfile:
+    #     path: /etc/rhsm/facts/k24.facts
+    #     line: "{{ item }}"
+    #     state: present
+    #     insertafter: '"LBrands.Notes":"LBrands Notes",'
+    #   with_items: "{{ old_notes.stdout_lines|list }}"
+    #   when: >
+    #     facts.stat.exists
+    
+    - name: SERVERS | Check for the ansible facts.d directory
+      stat:
+        path: /etc/ansible/facts.d
+      changed_when: false
+      register:
+        factsDir
+
+    - name: SERVERS | Create ansible facts.d directory if it is not there.
+      file:
+        state: directory
+        path: /etc/ansible/facts.d
+        owner: root
+        group: root
+        mode: 0755
+      when: not factsDir.stat.exists
+    
+    # Test again
+    - name: SERVERS | Check for ansible facts.d directory again to reset the registered variable
+      stat:
+        path: /etc/ansible/facts.d
+      changed_when: false
+      register:
+        factsDir
+    
+    - name: SERVERS | Link satellite facts to ansible facts
+      file:
+        state: link
+        src: /etc/rhsm/facts/k24.facts
+        dest: /etc/ansible/facts.d/k24.fact
+        owner: root
+        group: root
+      when: >
+        factsDir.stat.exists 
+        and factsDir.stat.isdir

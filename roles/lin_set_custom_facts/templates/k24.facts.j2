@@ -1,0 +1,9 @@
+{% if m_instance_context == 't' %} 
+  {% set ENV = 'Non-Production' %}
+{% elif m_instance_context == 'n' %}
+  {% set ENV = 'Non-Production' %}
+{% elif m_instance_context == 'p' %}
+  {% set ENV = 'Production' %}
+{% elif m_instance_context == 'i' %}
+  {% set ENV = 'Infrastructure' %}
+{% endif %}

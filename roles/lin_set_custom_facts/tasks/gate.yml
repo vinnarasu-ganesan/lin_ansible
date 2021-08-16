@@ -1,0 +1,15 @@
+- name: GATE | Run block for variable checks 
+  block:
+  - name: GATE | Fail if required variables are empty
+    fail:
+        msg: "{{ item.name }} is empty please provide value"
+    loop:
+        - {name: "m_instance_context", var: "{{ m_instance_context }}"}
+        - {name: "m_description", var: "{{ m_description }}"}
+        - {name: "m_created_by", var: "{{ m_created_by }}"}
+        - {name: "m_cloud_code", var: "{{ m_cloud_code }}"}
+        - {name: "k24_application", var: "{{ k24_application }}"}
+        - {name: "k24_contact_email_group", var: "{{ k24_contact_email_group }}"}
+        - {name: "k24_tier", var: "{{ k24_tier }}"}
+    when: item.var == ""
+  when: morpheus | length == 0

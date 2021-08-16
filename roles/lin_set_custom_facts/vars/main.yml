@@ -1,0 +1,2 @@
+timestamp: "{{ time.stdout }}"
+ansible_facts_loc: /etc/ansible/facts.d/
