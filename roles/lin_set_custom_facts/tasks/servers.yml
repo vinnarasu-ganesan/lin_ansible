@@ -23,6 +23,16 @@
         mode: 0644
       when: > 
         rhsm_facts.stat.exists
+
+    - name: SERVERS | Put k24.facts on the server for custom facts
+      template:
+        src: k24.facts.j2
+        dest: /etc/ansible/facts.d/k24.facts
+        owner: root
+        group: root
+        mode: 0644
+      when: > 
+        not rhsm_facts.stat.exists
     
     - name: SERVERS | Put k24.facts notes on the server.
       lineinfile:
