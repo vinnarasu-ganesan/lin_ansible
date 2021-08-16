@@ -30,6 +30,8 @@
         line: '"LBrands.Notes.{{ timestamp }}":"{{ notes }}",'
         state: present
         insertafter: '"LBrands.Notes":"LBrands Notes",'
+      when: > 
+        rhsm_dir.stat.exists
     
     - name: SERVERS | Put old facts back on machine
       lineinfile:
