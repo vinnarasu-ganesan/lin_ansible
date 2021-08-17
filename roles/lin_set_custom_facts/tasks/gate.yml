@@ -4,29 +4,26 @@
   changed_when: false
   
 - name: GATE | Stat to see if RedHat facts file is on the system
-  ansible.builtin.stat:
+  stat:
     path: /etc/rhsm/facts/{{ org }}.fact
   register: rhsm_facts
-  when: >
-    subscription_manager_installed.rc == 0
 
 - name: GATE | Check for the ansible facts.d directory
-  ansible.builtin.stat:
+  stat:
     path: /etc/ansible/facts.d
   register: ansible_facts_dir
 
-- name: GATE | DEBUG rhsm_facts
-  ansible.builtin.debug:
-    msg: "{{ rhsm_facts }}"
-
-- name: GATE | DEBUG Subscription Manager
-  ansible.builtin.debug:
-    msg: "{{ subscription_manager_installed }}"
+- name: GATE | DEBUG Report on checks for files
+  debug:
+    msg:
+      - "Subscription-manager install status: {{ subscription_manager_installed.rc }}" 
+      - "Satellite Facts: {{ rhsm_facts.stat.exists }}"
+      - "Ansible Facts Directory: {{ ansible_facts_dir.stat.exists }}"
 
 - name: GATE | Run block for variable checks 
   block:
   - name: GATE | Fail if required variables are empty
-    ansible.builtin.fail:
+    fail:
         msg: "{{ item.name }} is empty please provide value"
     loop:
         - {name: "m_instance_context", var: "{{ m_instance_context }}"}

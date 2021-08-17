@@ -9,9 +9,9 @@
 {% endif %}
 
 {
- "Environment": {{ ENV | default('Undefined') }},
- "Purpose": {{ application }}-{{ tier }},
- "ContactEmailGroup": {{ contact_email_group }},
- "Description": {{ m_description }},
- "CreatedBy": {{ m_created_by }}
+ "Environment": "{{ ENV | default('Undefined') }}",
+ "Purpose": "{{ application }}-{{ tier }}",
+ "ContactEmailGroup": "{{ contact_email_group }}",
+ "Description": "{{ m_description }}",
+ "CreatedBy": "{{ m_created_by }}"
 }

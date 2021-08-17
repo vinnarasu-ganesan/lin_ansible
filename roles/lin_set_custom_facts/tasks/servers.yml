@@ -23,11 +23,10 @@
         owner: root
         group: root
         mode: 0644
-      when: > 
-        not rhsm_facts.stat.exists
+
 
     - name: SERVERS | ReCheck to see if RedHat facts file is on the system
-      ansible.builtin.stat:
+      stat:
         path: /etc/rhsm/facts/{{ org }}.fact
       register: rhsm_facts
       when: >
@@ -67,10 +66,21 @@
     - name: SERVERS | Check for ansible facts.d directory again to reset the registered variable
       stat:
         path: /etc/ansible/facts.d
-      changed_when: false
       register: 
         ansible_facts_dir
-    
+
+    - name: GATE | Stat to see if RedHat facts file is on the system
+      stat:
+        path: /etc/rhsm/facts/{{ org }}.fact
+      register: rhsm_facts
+
+    - name: SERVERS | DEBUG Report on checks for files
+      debug:
+        msg:
+          - "Subscription-manager install status: {{ subscription_manager_installed.rc }}" 
+          - "Satellite Facts: {{ rhsm_facts.stat.exists }}"
+          - "Ansible Facts Directory: {{ ansible_facts_dir.stat.exists }}"
+
     - name: SERVERS | Link satellite facts to ansible facts
       file:
         state: link
