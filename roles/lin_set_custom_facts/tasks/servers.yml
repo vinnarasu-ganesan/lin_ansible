@@ -25,16 +25,6 @@
         mode: 0644
       when: > 
         not rhsm_facts.stat.exists
-
-    - name: SERVERS | Put {{ org }}.facts on the server for Ansible custom facts
-      template:
-        src: "{{ org }}.facts.j2"
-        dest: /etc/ansible/facts.d/{{ org }}.fact
-        owner: root
-        group: root
-        mode: 0644
-      when: > 
-        not rhsm_facts.stat.exists
     
     - name: SERVERS | Put {{ org }}.facts notes on the server.
       lineinfile:
@@ -76,7 +66,7 @@
     - name: SERVERS | Link satellite facts to ansible facts
       file:
         state: link
-        src: /etc/rhsm/facts/"{{ org }}.facts"
+        src: /etc/rhsm/facts/"{{ org }}.facts.j2"
         dest: /etc/ansible/facts.d/"{{ org }}.fact"
         owner: root
         group: root
