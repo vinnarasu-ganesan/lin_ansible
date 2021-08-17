@@ -26,7 +26,7 @@
       when: > 
         rhsm_facts.stat.exists
 
-    - name: SERVERS | Put {{ org }}.facts on the server for custom facts in satellite6
+    - name: SERVERS | Put {{ org }}.facts on the server for custom facts in Ansible
       template:
         src: "{{ org }}.facts.j2"
         dest: /etc/ansible/facts.d/{{ org }}.fact
