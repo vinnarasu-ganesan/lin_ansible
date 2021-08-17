@@ -30,8 +30,8 @@
         - {name: "m_description", var: "{{ m_description }}"}
         - {name: "m_created_by", var: "{{ m_created_by }}"}
         - {name: "m_cloud_code", var: "{{ m_cloud_code }}"}
-        - {name: "{{ org }}_application", var: "{{ org }}_{{ application }}"}
-        - {name: "{{ org }}_contact_email_group", var: "{{ org }}_{{ contact_email_group }}"}
-        - {name: "{{ org }}_tier", var: "{{ org }}_{{ tier }}"}
+        - {name: "application", var: "{{ application }}"}
+        - {name: "contact_email_group", var: "{{ contact_email_group }}"}
+        - {name: "tier", var: "{{ tier }}"}
     when: item.var == ""
   when: morpheus | length == 0
