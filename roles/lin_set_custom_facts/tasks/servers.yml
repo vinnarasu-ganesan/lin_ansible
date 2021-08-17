@@ -26,6 +26,16 @@
       when: > 
         rhsm_facts.stat.exists
 
+    - name: SERVERS | Put {{ org }}.facts on the server for custom facts in satellite6
+      template:
+        src: "{{ org }}.facts.j2"
+        dest: /etc/ansible/facts.d/{{ org }}.fact
+        owner: root
+        group: root
+        mode: 0644
+      when: > 
+        not rhsm_facts.stat.exists
+
     - name: SERVERS | ReCheck to see if RedHat facts file is on the system
       stat:
         path: /etc/rhsm/facts/{{ org }}.fact
