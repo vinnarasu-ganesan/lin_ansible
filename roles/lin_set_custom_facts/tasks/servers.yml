@@ -66,7 +66,7 @@
     - name: SERVERS | Link satellite facts to ansible facts
       file:
         state: link
-        src: /etc/rhsm/facts/"{{ org }}.facts.j2"
+        src: /etc/rhsm/facts/"{{ org }}.fact"
         dest: /etc/ansible/facts.d/"{{ org }}.fact"
         owner: root
         group: root
