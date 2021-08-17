@@ -1,7 +1,7 @@
 - name: GATE | Check to see if Subscription manager is on the server
   ansible.builtin.shell: 'which subscription-manager'
   register: subscription_manager_installed
-  changed_when: false
+  
 
 - name: GATE | Stat to see if RedHat facts file is on the system
   ansible.builtin.stat:
