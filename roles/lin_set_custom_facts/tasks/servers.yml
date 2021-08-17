@@ -23,7 +23,8 @@
         owner: root
         group: root
         mode: 0644
-
+      when: > 
+        rhsm_facts.stat.exists
 
     - name: SERVERS | ReCheck to see if RedHat facts file is on the system
       stat:
