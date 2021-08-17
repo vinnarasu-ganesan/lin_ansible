@@ -5,7 +5,7 @@
   
 - name: GATE | Stat to see if RedHat facts file is on the system
   ansible.builtin.stat:
-    path: /etc/rhsm/facts/{{ org }}.facts
+    path: /etc/rhsm/facts/{{ org }}.fact
   register: rhsm_facts
   when: >
     subscription_manager_installed.rc == 0
