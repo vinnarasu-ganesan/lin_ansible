@@ -53,6 +53,11 @@
     #   when: >
     #     rhsm_facts.stat.exists
 
+    - name: SERVERS | Stat to see if RedHat facts file is on the system
+      stat:
+        path: /etc/rhsm/facts/{{ org }}.fact
+      register: rhsm_facts
+
     - name: SERVERS | Create ansible facts.d directory if it is not there.
       file:
         state: directory
@@ -62,7 +67,7 @@
         mode: 0755
       when: > 
         not ansible_facts_dir.stat.exists
-
+      
     - name: SERVERS | Put {{ org }}.facts on the server for custom facts in Ansible
       template:
         src: "{{ org }}.facts.j2"
@@ -79,11 +84,6 @@
         path: /etc/ansible/facts.d
       register: 
         ansible_facts_dir
-
-    - name: GATE | Stat to see if RedHat facts file is on the system
-      stat:
-        path: /etc/rhsm/facts/{{ org }}.fact
-      register: rhsm_facts
 
     - name: SERVERS | DEBUG Report on checks for files
       debug:
