@@ -1,32 +1,40 @@
+- name: GATE | Check to see if Subscription manager is on the server
+  ansible.builtin.shell: 'which subscription-manager'
+  register: subscription_manager_installed
+  changed_when: false
+
 - name: GATE | Stat to see if RedHat facts file is on the system
   ansible.builtin.stat:
-    path: /etc/rhsm/facts/k24.facts
+    path: /etc/rhsm/facts/{{ org }}.facts
   register: rhsm_facts
+  when: >
+    subscription_manager_installed.rc == 0
 
-- name: GATE | DEBUG
+- name: GATE | Check for the ansible facts.d directory
+  ansible.builtin.stat:
+    path: /etc/ansible/facts.d
+  register: ansible_facts_dir
+
+- name: GATE | DEBUG rhsm_facts
   ansible.builtin.debug:
     msg: "{{ rhsm_facts }}"
 
-- name: GATE | Check to see if Subscription manager is on the server
-  shell: 'which subscription-manager'
-  register: subscription_manager_installed
-
-- name: GATE | DEBUG
-  debug:
+- name: GATE | DEBUG Subscription Manager
+  ansible.builtin.debug:
     msg: "{{ subscription_manager_installed }}"
 
 - name: GATE | Run block for variable checks 
   block:
   - name: GATE | Fail if required variables are empty
-    fail:
+    ansible.builtin.fail:
         msg: "{{ item.name }} is empty please provide value"
     loop:
         - {name: "m_instance_context", var: "{{ m_instance_context }}"}
         - {name: "m_description", var: "{{ m_description }}"}
         - {name: "m_created_by", var: "{{ m_created_by }}"}
         - {name: "m_cloud_code", var: "{{ m_cloud_code }}"}
-        - {name: "k24_application", var: "{{ k24_application }}"}
-        - {name: "k24_contact_email_group", var: "{{ k24_contact_email_group }}"}
-        - {name: "k24_tier", var: "{{ k24_tier }}"}
+        - {name: "{{ org }}_application", var: "{{ org }}_{{ application }}"}
+        - {name: "{{ org }}_contact_email_group", var: "{{ org }}_{{ contact_email_group }}"}
+        - {name: "{{ org }}_tier", var: "{{ org }}_{{ tier }}"}
     when: item.var == ""
   when: morpheus | length == 0

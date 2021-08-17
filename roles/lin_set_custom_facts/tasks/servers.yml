@@ -5,38 +5,40 @@
       register: time
     
     - name: SERVERS | Check for old notes on server.
-      shell: egrep -i 'LBrands.Notes.[0-9]|LBrands.Notes' /etc/rhsm/facts/k24.facts
-      changed_when: False
-      when: rhsm_facts.stat.exists
+      shell: egrep -i 'LBrands.Notes.[0-9]|LBrands.Notes' /etc/rhsm/facts/"{{ org }}".facts
+      when: > 
+        rhsm_facts.stat.exists
+      changed_when: false
       register: old_notes
     
-    - name: SERVERS | Backup old k24.facts
-      command: mv /etc/rhsm/facts/k24.facts /etc/rhsm/facts/k24.facts.{{ timestamp }}
-      when: rhsm_facts.stat.exists
+    - name: SERVERS | Backup old {{ org }}.facts
+      command: mv /etc/rhsm/facts/"{{ org }}".facts /etc/rhsm/facts/"{{ org }}".facts.{{ timestamp }}
+      when: > 
+        rhsm_facts.stat.exists
     
-    - name: SERVERS | Put k24.facts on the server for custom facts in satellite6
+    - name: SERVERS | Put {{ org }}.facts on the server for custom facts in satellite6
       template:
-        src: k24.facts.j2
-        dest: /etc/rhsm/facts/k24.facts
+        src: "{{ org }}.facts.j2"
+        dest: /etc/rhsm/facts/{{ org }}.fact
         owner: root
         group: root
         mode: 0644
       when: > 
-        rhsm_facts.stat.exists
+        not rhsm_facts.stat.exists
 
-    - name: SERVERS | Put k24.facts on the server for custom facts
+    - name: SERVERS | Put {{ org }}.facts on the server for Ansible custom facts
       template:
-        src: k24.facts.j2
-        dest: /etc/ansible/facts.d/k24.facts
+        src: "{{ org }}.facts.j2"
+        dest: /etc/ansible/facts.d/{{ org }}.fact
         owner: root
         group: root
         mode: 0644
       when: > 
         not rhsm_facts.stat.exists
     
-    - name: SERVERS | Put k24.facts notes on the server.
+    - name: SERVERS | Put {{ org }}.facts notes on the server.
       lineinfile:
-        path: /etc/rhsm/facts/k24.facts
+        path: /etc/rhsm/facts/"{{ org }}.fact"
         line: '"LBrands.Notes.{{ timestamp }}":"{{ notes }}",'
         state: present
         insertafter: '"LBrands.Notes":"LBrands Notes",'
@@ -45,20 +47,13 @@
     
     - name: SERVERS | Put old facts back on machine
       lineinfile:
-        path: /etc/rhsm/facts/k24.facts
+        path: /etc/rhsm/facts/"{{ org }}.facts"
         line: "{{ item }}"
         state: present
         insertafter: '"LBrands.Notes":"LBrands Notes",'
       with_items: "{{ old_notes.stdout_lines|list }}"
       when: >
         rhsm_facts.stat.exists
-    
-    - name: SERVERS | Check for the ansible facts.d directory
-      stat:
-        path: /etc/ansible/facts.d
-      changed_when: false
-      register:
-        ansible_facts_dir
 
     - name: SERVERS | Create ansible facts.d directory if it is not there.
       file:
@@ -81,8 +76,8 @@
     - name: SERVERS | Link satellite facts to ansible facts
       file:
         state: link
-        src: /etc/rhsm/facts/k24.facts
-        dest: /etc/ansible/facts.d/k24.fact
+        src: /etc/rhsm/facts/"{{ org }}.facts"
+        dest: /etc/ansible/facts.d/"{{ org }}.fact"
         owner: root
         group: root
       when: >
