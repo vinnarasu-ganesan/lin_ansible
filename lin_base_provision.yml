@@ -52,13 +52,13 @@
         isCENTOS7
         or isCENTOS8
         or isUBUNTU2004
-        
+
   # Application / Agent settings 
     - name: Include Install docker
       include_role:
         name: lin_install_docker
       when: >
-        m_isDocker == 'on'
+        isDocker == 'on'
         and (isCENTOS7 or isCENTOS8) 
 
    
