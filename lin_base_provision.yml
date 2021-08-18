@@ -32,7 +32,11 @@
   tasks:
     - name: Include MOTD setup
       include_role:
-        name: lin_install_motd
+        name: lin_set_motd
+
+    - name: Include Setting up the Custom Facts
+      include_role: 
+        name: lin_set_custom_facts
 
     - name: Include Enable EPEL
       include_role:
@@ -47,7 +51,9 @@
       when: >
         isCENTOS7
         or isCENTOS8
-
+        or isUBUNTU2004
+        
+  # Application / Agent settings 
     - name: Include Install docker
       include_role:
         name: lin_install_docker
