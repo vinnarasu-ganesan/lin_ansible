@@ -22,7 +22,7 @@
           - "m_created_by: {{ m_created_by }}"
           - "m_group: {{ m_group }}"
           - "m_description: {{ m_description }}"
-          - "m_isDocker: {{ m_isDocker }}"
+          - "m_isDocker: {{ isDocker }}"
           - "isRHEL7: {{ isRHEL7 }}"
           - "isCENTOS7: {{ isCENTOS7 }}"
           - "isUBUNTU2004: {{ isUBUNTU2004 }}"
