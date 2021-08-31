@@ -1,3 +1,0 @@
-# from GitLab or other git-based scm, using git+ssh
-- src: git@github.com:todd-8424/ansible_util.git
-  scm: git
