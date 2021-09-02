@@ -2,8 +2,8 @@
 - name: Include Standard AD connection
   include: "{{ ansible_distribution }}.yml"
 
-- name: Remove the ldap script
-  file: 
-    path: /root/ldap_add.py
-    state: absent
+# - name: Remove the ldap script
+#   file: 
+#     path: /root/ldap_add.py
+#     state: absent
     

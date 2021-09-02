@@ -7,18 +7,7 @@
     group: root
     mode: 0644
 
-- name: MAIN | Modify updater for UBUNTU
-  ansible.builtin.file: 
-    path: "{{ item }}"
-    owner: root
-    group: root
-    mode: 0600
-  loop:
-    - "{{ dir }}10-help-text"
-    - "{{ dir }}50-motd-news"
-    - "{{ dir }}90-updates-available"
-    - "{{ dir }}91-release-upgrade"
-    - "{{ dir }}92-unattended-upgrades"
-  when: 
-    isUBUNTU1804
-    or isUBUNTU2004
+- name: MAIN | Include Ubuntu solution
+  include: "{{ ansible_distribution | lower }}.yml"
+  when: > 
+    ansible_distribution | lower == "ubuntu"
