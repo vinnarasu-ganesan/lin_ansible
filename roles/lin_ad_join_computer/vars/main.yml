@@ -2,12 +2,19 @@
     # vars file for lin_join_ad
 
     # Variables from morpheus
-    group_ou: "{{ lookup('cypher','secret=secret/group_ou') }}"
-    computer_ou: "{{ lookup('cypher','secret=secret/computer_ou') }}"
-    realm: "{{ lookup('cypher','secret=secret/realm') }}"
-    realm_admin_ansible: "{{ lookup('cypher','secret=secret/realm_admin_ansible') }}"
-    realm_password: "{{ lookup('cypher','secret=secret/realm_password') }}"
-    root_admin_group: "{{ lookup('cypher','secret=secret/root_admin_group') }}"
+    # group_ou: "{{ lookup('cypher','secret=secret/group_ou') }}"
+    # computer_ou: "{{ lookup('cypher','secret=secret/computer_ou') }}"
+    # realm: "{{ lookup('cypher','secret=secret/realm') }}"
+    # realm_admin_ansible: "{{ lookup('cypher','secret=secret/realm_admin_ansible') }}"
+    # realm_password: "{{ lookup('cypher','secret=secret/realm_password') }}"
+    # root_admin_group: "{{ lookup('cypher','secret=secret/root_admin_group') }}"
+
+    group_ou: OU=System Groups,OU=Groups,OU=K24,DC=k24,DC=lan
+    computer_ou: OU=Linux,OU=Servers,OU=K24,DC=k24,DC=lan
+    realm: dc1.k24.lan
+    realm_admin_ansible: k24\\administrator 
+    realm_password: k24Lab*123
+    root_admin_group: LinuxRootAdmins
 
     # Packages to be installed
     ad_packages_centos: 
