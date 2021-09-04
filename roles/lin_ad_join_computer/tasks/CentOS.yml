@@ -40,12 +40,14 @@
     command: realm permit -g "{{ ansible_hostname }}"
     responses:
       Password for Administrator: "{{ realm_password }}"
+  no_log: True
 
 - name: Permit root admins
   expect:
     command: realm permit -g "{{ root_admin_group }}"
     responses:
       Password for Administrator: "{{ realm_password }}"
+  no_log: True
 
 - name: Add sssd conf lines
   lineinfile:
