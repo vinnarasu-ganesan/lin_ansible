@@ -9,12 +9,12 @@
     # realm_password: "{{ lookup('cypher','secret=secret/realm_password') }}"
     # root_admin_group: "{{ lookup('cypher','secret=secret/root_admin_group') }}"
 
-    group_ou: OU=System Groups,OU=Groups,OU=K24,DC=k24,DC=lan
-    computer_ou: OU=Linux,OU=Servers,OU=K24,DC=k24,DC=lan
-    realm: dc1.k24.lan
-    realm_admin_ansible: k24\\administrator 
-    realm_password: k24Lab*123
-    root_admin_group: LinuxRootAdmins
+    group_ou: "{{ lookup('hashi_vault', 'secret=Linux/data/active_directory token='\"{{ vault_token }}\" ' url=http://tklx00002.k24.lan:8200 validate_certs=False')|json_query('group_ou')}}"
+    computer_ou: "{{ lookup('hashi_vault', 'secret=Linux/data/active_directory token='\"{{ vault_token }}\" ' url=http://tklx00002.k24.lan:8200 validate_certs=False')|json_query('computer_ou')}}"
+    realm: "{{ lookup('hashi_vault', 'secret=Linux/data/active_directory token='\"{{ vault_token }}\" ' url=http://tklx00002.k24.lan:8200 validate_certs=False')|json_query('realm')}}"
+    realm_admin_ansible: "{{ lookup('hashi_vault', 'secret=Linux/data/active_directory token='\"{{ vault_token }}\" ' url=http://tklx00002.k24.lan:8200 validate_certs=False')|json_query('realm_admin_ansible')}}"
+    realm_password: "{{ lookup('hashi_vault', 'secret=Linux/data/active_directory token='\"{{ vault_token }}\" ' url=http://tklx00002.k24.lan:8200 validate_certs=False')|json_query('realm_admin_password')}}"
+    root_admin_group: "{{ lookup('hashi_vault', 'secret=Linux/data/active_directory token='\"{{ vault_token }}\" ' url=http://tklx00002.k24.lan:8200 validate_certs=False')|json_query('root_admin_group')}}"
 
     # Packages to be installed
     ad_packages_centos: 

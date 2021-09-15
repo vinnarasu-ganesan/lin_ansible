@@ -1,4 +1,7 @@
 ---
+- name: Include vault.yml
+  include_vars: ./vars/vault.yml
+
 - name: Include Standard AD connection
   include: "{{ ansible_distribution }}.yml"
 
