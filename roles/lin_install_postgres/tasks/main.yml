@@ -1,4 +1,7 @@
 ---
+- name: Include Gate 
+  include: gate.yml
+  
 - name: Create Postgres group
   group:
     name: postgres
