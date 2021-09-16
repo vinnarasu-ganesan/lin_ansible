@@ -10,8 +10,9 @@
 
 {
  "Environment": "{{ ENV | default('Undefined') }}",
- "Purpose": "{{ application }}-{{ tier }}",
+ "Purpose": "{{ application }}-{{ tier | d('undefined') }}",
  "ContactEmailGroup": "{{ contact_email_group }}",
+ "MorpheusTenant": "{{ m_instance_tenanat }}",
  "Description": "{{ m_description }}",
  "CreatedBy": "{{ m_created_by }}"
 }
