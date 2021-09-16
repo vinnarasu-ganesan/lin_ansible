@@ -19,7 +19,7 @@ m_cloud_name: "{{ m_zone.cloudTypeName | default('') }}"
 m_instance_context: "{{ m_instance.instanceContext | default('') }}"
 m_instance_type_code: "{{ m_instance.instanceTypeCode | default('') }}"
 m_instance_type_name: "{{ m_instance.instanceTypeName | default('') }}"
-m_instance_tenant: "{{ m_instance.tenant | default('') }}"
+m_instance_tenant: "{{ morpheus.tenant | default('') }}"
 m_description: "{{ m_instance.tags | default('') }}"
 m_created_by: "{{ m_instance.createdByEmail | default('') }}"
 
