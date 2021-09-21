@@ -20,6 +20,7 @@
           - "m_instance_type_code: {{ m_instance_type_code }}"
           - "m_instance_type_name: {{ m_instance_type_name }}"
           - "m_instance_tenant: {{ m_instance_tenant }}"
+          - "m_account_name: {{ m_account_name }}"
           - "m_created_by: {{ m_created_by }}"
           - "m_group: {{ m_group }}"
           - "m_description: {{ m_description }}"
