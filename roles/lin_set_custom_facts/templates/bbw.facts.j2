@@ -6,7 +6,8 @@
   {% set ENV = 'Production' %}
 {% elif m_instance_context == 'i' %}
   {% set ENV = 'Infrastructure' %}
-{% endif %}{
+{% endif %}
+{
  "Environment": "{{ ENV | default('Undefined') }}",
  "CloudName":"{{ m_zone.name }}",
  "CloudLocation":"{{ m_zone.location }}",
