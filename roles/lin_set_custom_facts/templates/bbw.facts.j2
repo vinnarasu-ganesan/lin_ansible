@@ -1,13 +1,14 @@
 {
  "Environment": "{{ ENV | default('Undefined') }}",
- "Zone":"{{ m_zone }}",
+ "CloudName":"{{ m_zone.name }}",
+ "CloudLocaltion":"{{ m_zone.localtion }}",
+ "CloudType":"{{ m_zone.cloudTypeCode }}",
  "Purpose": "{{ application }}-{{ tier | d('Undefined') }}",
  "ContactEmailGroup": "{{ contact_email_group }}",
  "MorpheusTenant": "{{ m_instance_tenant }}",
  "Metadata": "{{ m_metadata }}{{ m_server_tags }}",
  "CreatedBy": "{{ m_created_by }}"
 }
-
 {% if m_instance_context == 't' %} 
   {% set ENV = 'Non-Production' %}
 {% elif m_instance_context == 'n' %}
