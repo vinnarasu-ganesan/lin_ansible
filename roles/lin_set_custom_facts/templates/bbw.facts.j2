@@ -13,6 +13,6 @@
  "Purpose": "{{ application }}-{{ tier | d('Undefined') }}",
  "ContactEmailGroup": "{{ contact_email_group }}",
  "MorpheusTenant": "{{ m_instance_tenant }}",
- "Metadata": "{{ m_metadata }}",
+ "Metadata": "{{ m_metadata }}{{ m_server_tags }}",
  "CreatedBy": "{{ m_created_by }}"
 }
