@@ -1,7 +1,7 @@
 {
  "Environment": "{{ ENV | default('Undefined') }}",
  "CloudName":"{{ m_zone.name }}",
- "CloudLocaltion":"{{ m_zone.localtion }}",
+ "CloudLocation":"{{ m_zone.location }}",
  "CloudType":"{{ m_zone.cloudTypeCode }}",
  "Purpose": "{{ application }}-{{ tier | d('Undefined') }}",
  "ContactEmailGroup": "{{ contact_email_group }}",
