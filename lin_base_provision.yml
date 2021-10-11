@@ -38,7 +38,7 @@
 
     - name: Include Setting up the Custom Facts
       include_role: 
-        name: lin_set_custom_facts
+        name: lin_set_facts
 
     - name: Include Enable EPEL
       include_role:

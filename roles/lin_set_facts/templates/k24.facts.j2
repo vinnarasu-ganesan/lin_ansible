@@ -7,11 +7,14 @@
 {% elif m_instance_context == 'i' %}
   {% set ENV = 'Infrastructure' %}
 {% endif %}
-
 {
  "Environment": "{{ ENV | default('Undefined') }}",
- "Purpose": "{{ org }}_{{ application }}-{{ org }}_{{tier }}",
- "ContactEmailGroup": "{{ org }}_{{contact_email_group }}",
- "Description": "{{ m_description }}",
+ "CloudName":"{{ m_zone.name }}",
+ "CloudLocation":"{{ m_zone.location }}",
+ "CloudType":"{{ m_zone.cloudTypeCode }}",
+ "Purpose": "{{ application | default('Undefined') }}-{{ tier | default('Undefined') }}",
+ "ContactEmailGroup": "{{ contact_email_group }}",
+ "MorpheusTenant": "{{ m_instance_tenant }}",
+ "Metadata": "{{ m_metadata }}{{ m_server_tags }}",
  "CreatedBy": "{{ m_created_by }}"
 }

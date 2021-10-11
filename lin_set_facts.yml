@@ -10,10 +10,6 @@
       include_vars: ./vars/morpheus_vars.yml
 
   tasks:
-    - name: Debug
-      ansible.builtin.debug:
-        msg: "{{ m_instance_tenant }}"
-        
     - name: Play | Setup custom facts
       include_role:
-        name: lin_set_custom_facts
+        name: lin_set_facts

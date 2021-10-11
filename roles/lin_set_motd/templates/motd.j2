@@ -19,7 +19,8 @@ Network:
   {{ ansible_default_ipv4.netmask }}
 {% if morpheus %}
 Morpheus:
-  Metadata:   {{ m_metadata }}{{ m_server_tags }}
+  Tenant:        {{ m_instance_tenant }}
+  Metadata:      {{ m_metadata }}{{ m_server_tags }}
   Created BY:    {{ m_created_by }}
   Instance Type: {{ m_instance_type_name }}
   Cloud:         {{ m_cloud_name }}
