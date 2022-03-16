@@ -7,9 +7,9 @@
       include_vars: ./vars/morpheus_vars.yml
   tasks:
 
-#   - name: Print out cypher
-#     debug: 
-#       msg: "This is a secret from Cypher: {{ lookup('cypher','secret=secret/test') }}"
+  - name: Print out cypher
+    debug: 
+      msg: "This is a secret from Cypher: {{ lookup('cypher','secret=secret/test') }}"
 
 #   - name: Print out morpheus varable
 #     debug:
