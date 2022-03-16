@@ -3,15 +3,15 @@
   become: true
   gather_facts: no
   tasks:
-   - name: Print out all morpheus vars
+   - name: Print out all morpheus vars in yaml
      debug: 
        msg: "{{ hostvars[inventory_hostname]['morpheus'] | to_nice_yaml }}"
 
-  - name: Print out all morpheus vars
+  - name: Print out all morpheus vars hostname in json
     debug: 
       msg: "Hostname: {{ morpheus | to_json(ensure_ascii=False) }}"
 
-   - name: Print out all morpheus vars
+   - name: Print out all morpheus vars hostname
      debug: 
        msg: "Hostname: {{ morpheus['instance']['hostname'] }}"
 
