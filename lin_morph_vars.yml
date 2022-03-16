@@ -7,7 +7,7 @@
      debug: 
        msg: "{{ hostvars[inventory_hostname]['morpheus'] | to_nice_yaml }}"
 
-  - name: Print out all morpheus vars hostname in json
+   - name: Print out all morpheus vars hostname in json
     debug: 
       msg: "Hostname: {{ morpheus | to_json(ensure_ascii=False) }}"
 
